@@ -10,7 +10,46 @@
 
 5. 如果一个单元测试引用了 同一个包下面的 Type或者方法之类，不能go test xx.go。 参数为单元测试文件的命令来跑单元测试，必须要按照 go tes packe_name  的命令跑。如果用当前的包已经被添加到 gopath下面，则可以只包含包名。不然必须要包名的绝对路径
 
-6. ```go
+6. [how to write Go code](https://golang.org/doc/code.html) 
+
+   1. **Go 支持唯一workspace 路径，这个workspace就是你的GOPATH** 这意味着，你所有的开发等都需要在这个workspace下面完成！
+
+   2. 这个workspace 下面有三个目录分别为 
+
+      1. src : source code
+      2. pkg : contain package objects 
+      3. bin : constains exectable commands
+
+      ```
+      bin/
+          hello                          # command executable
+          outyet                         # command executable
+      pkg/
+          linux_amd64/
+              github.com/golang/example/
+                  stringutil.a           # package object
+      src/
+          github.com/golang/example/
+              .git/                      # Git repository metadata
+      	hello/
+      	    hello.go               # command source
+      	outyet/
+      	    main.go                # command source
+      	    main_test.go           # test source
+      	stringutil/
+      	    reverse.go             # package source
+      	    reverse_test.go        # test source
+          golang.org/x/image/
+              .git/                      # Git repository metadata
+      	bmp/
+      	    reader.go              # package source
+      	    writer.go              # package source
+          ... (many more repositories and packages omitted) ...
+      ```
+
+      3. 
+
+7. ```go
    switch numPointer.(type) {
    	case *uint8,*int:
    		byteLen = 1

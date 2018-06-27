@@ -102,3 +102,4 @@ query = 'SELECT name FROM table WHERE article_id IN ({})'.format(placeholders)
 
 cursor.execute(query, tuple(article_ids))
 ```
+2. Python3.6 的解码有问题，再安装一些依赖时报编码错误，解决办法： https://github.com/pypa/pip/issues/4251
