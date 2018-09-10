@@ -1,8 +1,6 @@
-# 安全方面的一些思考
-
-1. 在接入BTX系列的代币时，如果BTX接收充币操作，那么如果set 了lock time ，那么这笔UTXO相当于时没办法归集的，这个应该时怎么考虑？ 是在接收充币时拒绝？（那么这个充币可能就会被自动忽略），如果这个存入UTXO table，如果在lock time之前进行归集操作，那么这个归集的交易就会被全节点给拒绝掉。
 
 
+# Ethash
 
 -----
 
@@ -197,7 +195,7 @@ def calc_dataset_item(cache, i):
     return sha3_512(mix)
 ```
 
-FNV能快速hash大量数据并保持较小的冲突率，它的高度分散使它适用于hash一些非常相近的字符串，比如URL，hostname，文件名，text，IP地址等。
+FNV能快速hash大量数据并保持较小的冲突率，它的高度分散使它适用于hash一些非常相近的字符串，比如URL，hostname，文件名，text，IP地址等,类似的Bloom Fliter 也大量使用Fnv hash来进行信息摘要
 
 ```go
 func fnv(a, b uint32) uint32 {
