@@ -13,7 +13,7 @@
 
 1. 最优先的考虑是是否可以添加索引，在Where的条件列上添加索引，一般是可以大幅度提高查询效率的。不过，索引也是需要占用一定存储空间的，所以，建立高效的索引是关键。可以参考：[mysql是怎样使用索引的](https://dev.mysql.com/doc/refman/5.7/en/mysql-indexes.html)和[使用explain来优化查询](https://dev.mysql.com/doc/refman/5.7/en/using-explain.html)
 2. 隔离和调整查询的任何部分，例如函数调用，这需要花费很多时间。根据查询的结构方式，可以为结果集中的每一行调用一次函数，或者甚至对表中的每一行调用一次函数，从而大大放大了任何低效率。
-3. 尽量避免进行全表扫描的查询
+3. 尽量避免进行全表扫描的查询。
 4. 有周期的使用[ANALYZE_TABLE](https://dev.mysql.com/doc/refman/5.7/en/analyze-table.html)语句对表进行分析，这样优化器就有构建高效执行计划所需的信息
 5. 对存储引擎进行特定优化[InnoDB优化](https://dev.mysql.com/doc/refman/5.7/en/optimizing-innodb-queries.html)
 6. 您可以InnoDB使用第8.5.3节[优化InnoDB只读事务](https://dev.mysql.com/doc/refman/5.7/en/innodb-performance-ro-txn.html)中的技术来优化表的 单查询事务 。
@@ -73,7 +73,7 @@
 
 
 	(x AND y) OR z => (x OR z) AND (y OR z)
-
+	
 	(x OR y) AND z => (x AND z) OR (y AND z)
 
 

@@ -1,7 +1,15 @@
 # HTTPS探究（非对称加密算法 RSA）
 
 + [参考 1 ](https://www.jianshu.com/p/67bcb140d804)
-+ ​
++ 
+
+## X509 public key format
+
+**X.509** 是密码学里[公钥证书](https://zh.wikipedia.org/wiki/%E5%85%AC%E9%92%A5%E8%AF%81%E4%B9%A6)的格式标准。 X.509 证书己应用在包括[TLS/SSL](https://zh.wikipedia.org/wiki/TLS/SSL)在内的众多 Intenet协议里.同时它也用在很多非在线应用场景里，比如电子签名服务。 
+
+X.509证书里含有公钥、身份信息（比如网络主机名，组织的名称或个体名称等）和签名信息（可以是证书签发机构CA的签名，也可以是自签名）。
+
+X.509颁发 在X.509里，组织机构通过发起证书签名请求（[CSR](https://zh.wikipedia.org/wiki/CSR)）来得到一份签名的证书。首先需要生成一对钥匙对，然后用其中的私钥对CSR进行签名，并安全地保存私钥。CSR进而包含有请求发起者的身份信息、用来对此请求进行验真的的公钥以及所请求证书专有名称。CSR里还可能带有CA要求的其它有关身份证明的信息。然后CA对这个专有名称发布一份证书，并绑定一个公钥. 组织机构可以把受信的根证书分发给所有的成员，这样就可以使用公司的PKI系统了。像Firefox, IE, Opera, Safari 以及Google Chrome都预装有早就确定的根证书列表，所以使用主流CA发布的证书SSL都直接可以正常使用。浏览器的开发者直接影响着它的用户对第三方的信任。FireFox就提供了一份csv/html格式的列表[[2\]](https://zh.wikipedia.org/wiki/X.509#cite_note-2) X.509也定义了CRL实现标准。另一种检查合法性的方式是OCSP。
 
 ### 公匙和私匙
 
